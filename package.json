@@ -1,0 +1,23 @@
+{
+  "name": "probzoo",
+  "version": "1.0.0",
+  "description": "Probability Zoo",
+  "main": "index.js",
+  "repository": "https://github.com/mdekstrand/probability-zoo.git",
+  "author": "Michael Ekstrand <md@ekstrandom.net>",
+  "license": "MIT",
+  "devDependencies": {
+    "@dynatrace/zakzak": "^0.6.2",
+    "@types/mocha": "^7.0.2",
+    "@types/node": "^14.0.5",
+    "chai": "^4.2.0",
+    "eslint": "^7.1.0",
+    "fast-check": "^1.24.2",
+    "mocha": "^7.2.0",
+    "ts-node": "^8.10.1"
+  },
+  "dependencies": {
+    "mithril": "^2.0.4",
+    "typescript": "^3.9.3"
+  }
+}

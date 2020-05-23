@@ -1,0 +1,27 @@
+import {expect} from 'chai';
+import * as jsa from '../lib/arrays';
+import * as rsa from '../wasm/probzoo';
+
+function testAXPY(src) {
+  return describe("JS array math", () => {
+    it("should work on empty arrays", () => {
+      let x = jsa.empty();
+      let y = jsa.empty();
+      src.axpy(2, x, y);
+    });
+
+    it("should work on random arrays", () => {
+      let x = jsa.makeRandom(10);
+      let y = jsa.makeRandom(10);
+      let y2 = Float64Array.from(y);
+      src.axpy(2, x, y);
+      for (let i = 0; i < 10; i++) {
+        expect(y[i]).to.equal(y2[i] + x[i] * 2);
+        expect(y[i]).to.not.equal(y2[i]);
+      }
+    });
+  });
+}
+
+testAXPY(jsa);
+testAXPY(rsa);

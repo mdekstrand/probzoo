@@ -1,0 +1,15 @@
+[package]
+name = "probzoo"
+version = "0.1.0"
+authors = ["Michael Ekstrand <md@ekstrandom.net>"]
+edition = "2018"
+
+[lib]
+crate-type = ["cdylib"]
+
+[profile.release]
+lto = true
+opt-level = 's'
+
+[dependencies]
+wasm-bindgen = "~0.2.62"

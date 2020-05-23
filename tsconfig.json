@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "module": "CommonJS",
+    "outDir": "build"
+  },
+  "include": [
+    "lib/**/*",
+    "benchmark/*.bench.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
