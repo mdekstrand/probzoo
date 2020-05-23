@@ -14,5 +14,6 @@ suite("Normal Dist", () => {
     let curve = rsa.normal_pdf(0, 1, -5, 5, 1000);
     let xs = curve.get_xs();
     let ys = curve.get_ys();
+    curve.free();
   });
 });

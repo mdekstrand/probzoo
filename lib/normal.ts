@@ -3,11 +3,12 @@ import { ContinuousDistribution } from './distribution';
 const SQRT_2PI = Math.sqrt(2 * Math.PI);
 
 function _norm_pdf(mean, sd, x) {
-  let scale = sd * SQRT_2PI;
-  let val = (x - mean) / sd;
+  let recip_sd = 1.0 / sd
+  let recip_scale = recip_sd / SQRT_2PI;
+  let val = (x - mean) * recip_sd;
   val = val * val * -0.5;
   val = Math.exp(val);
-  return val / scale;
+  return val * recip_scale;
 }
 
 export class Normal implements ContinuousDistribution {

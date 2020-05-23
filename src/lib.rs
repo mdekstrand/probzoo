@@ -3,10 +3,6 @@ use libm;
 
 use core::f64::consts::PI;
 
-// Use `wee_alloc` as the global allocator.
-#[global_allocator]
-static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
-
 #[wasm_bindgen]
 pub fn axpy(a: f64, x: &[f64], y: &mut [f64]) {
   for i in 0..x.len() {
@@ -64,14 +60,15 @@ impl ContinuousCurve {
 
 #[wasm_bindgen]
 pub fn normal_pdf(mean: f64, sd: f64, start: f64, end: f64, n: usize) -> ContinuousCurve {
-  let sqrt_2pi = libm::sqrt(2.0 * PI);
+  let recip_sqpi = 1.0 / libm::sqrt(2.0 * PI);
+  let recip_sd = 1.0 / sd;
   let xs = _linspace(start, end, n);
   let mut ys = Vec::with_capacity(n);
+  let recip_scale = recip_sqpi * recip_sd;
   for i in 0..n {
-    let scale = sd * sqrt_2pi;
-    let mut val = (xs[i] - mean) / sd;
+    let mut val = (xs[i] - mean) * recip_sd;
     val = val * val * -0.5;
-    ys.push(libm::exp(val) / scale);
+    ys.push(libm::exp(val) * recip_scale);
   }
   ContinuousCurve {
     xs: xs, ys: ys
