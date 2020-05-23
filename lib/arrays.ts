@@ -2,6 +2,16 @@ export function empty(): Float64Array {
   return new Float64Array(0);
 }
 
+export function linspace(start, stop, num): Float64Array {
+  let out = new Float64Array(num);
+  let gap = start != stop ? (stop - start) / (num - 1) : 0;
+  for (let i = 0; i < num - 1; i++) {
+    out[i] = start + i * gap;
+  }
+  out[num-1] = stop;
+  return out;
+}
+
 export function makeRandom(size): Float64Array {
   let arr = new Float64Array(size);
   for (let i = 0; i < size; i++) {
