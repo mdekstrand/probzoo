@@ -5,7 +5,8 @@
   },
   "include": [
     "lib/**/*",
-    "benchmark/*.bench.ts"
+    "benchmark/*",
+    "test/*"
   ],
   "exclude": [
     "node_modules"

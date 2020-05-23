@@ -16,3 +16,17 @@ suite("axpy", () => {
     rsa.axpy(1.5, x, y2);
   });
 })
+
+
+suite("add", () => {
+  let x = jsa.makeRandom(1000);
+  let y = jsa.makeRandom(1000);
+
+  benchmark("JavaScript", () => {
+    let y2 = jsa.add(1.5, x, y);
+  });
+
+  benchmark("Rust", () => {
+    let y2 = rsa.add(1.5, x, y);
+  });
+})

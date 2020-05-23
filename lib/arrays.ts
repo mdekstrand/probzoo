@@ -16,3 +16,12 @@ export function axpy(a: number, x: Float64Array, y: Float64Array) {
     y[i] = y[i] + x[i] * a;
   }
 }
+
+export function add(a: number, x: Float64Array, y: Float64Array): Float64Array {
+  let n = x.length;
+  let out = new Float64Array(n);
+  for (let i = 0; i < n; i++) {
+    out[i] = y[i] + x[i] * a;
+  }
+  return out;
+}
