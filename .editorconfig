@@ -9,3 +9,6 @@ charset = utf-8
 
 [{*.js,*.ts,*.json,*.toml}]
 indent_size = 2
+
+[*.rs]
+indent_size = 2

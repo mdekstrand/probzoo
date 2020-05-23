@@ -58,6 +58,47 @@ describe('linspace', function() {
   })
 })
 
+describe('Rust linspace', function() {
+  this.timeout(15000);
+
+  it("should return an empty array with 0", () => {
+    let ls = rsa.linspace(0, 1, 0);
+    expect(ls).to.be.empty;
+  });
+
+  it("should space 0 to 1", () => {
+    let ls = rsa.linspace(0, 1, 11);
+    expect(ls).to.have.length(11);
+    expect(ls[0]).to.equal(0);
+    expect(ls[10]).to.equal(1);
+    for (let i = 0; i < 11; i++) {
+      expect(ls[i]).to.be.closeTo(i * 0.1, 1.0e-10);
+    }
+  });
+
+  it("should space arrays", () => {
+    fc.assert(fc.property(fc.float(), fc.float(), fc.integer(2, 10000), (s, e, n) => {
+      let ls = rsa.linspace(s, e, n);
+      expect(ls).to.have.length(n);
+      expect(ls[0]).to.closeTo(s, 1.0e-10);
+      expect(ls[n-1]).to.be.closeTo(e, 1.0e-10);
+      for (let i = 1; i < n; i++) {
+        let x = ls[i];
+        if (e > s) {
+          expect(x).to.be.within(s, e);
+          expect(x).to.be.greaterThan(ls[i-1]);
+        } else if (s > e) {
+          expect(x).to.be.within(e, s);
+          expect(x).to.be.lessThan(ls[i-1]);
+        } else {
+          // degenerate case, s = e
+          expect(x).to.equal(s);
+        }
+      }
+    }))
+  })
+})
+
 function testAXPY(src, mode) {
   return describe(`${mode} array math`, () => {
     describe("AXPY", () => {
