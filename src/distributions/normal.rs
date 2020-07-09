@@ -7,6 +7,8 @@ use serde_wasm_bindgen::from_value;
 use crate::curve::{CurveSpec};
 use super::ContinuousDist;
 
+const CRIT_995: f64 = 2.575829;
+
 #[derive(Serialize, Deserialize)]
 pub struct NormalParams {
   pub mean: f64,
@@ -32,14 +34,18 @@ impl NormalDist {
       recip_scale: recip_sqpi * recip_sd
     }
   }
+
+  fn destandardize(&self, x: f64) -> f64 {
+    x * self.sd + self.mean
+  }
 }
 
 impl ContinuousDist for NormalDist {
   fn vis_lb(&self) -> f64 {
-    return -10.0;
+    self.destandardize(-CRIT_995)
   }
   fn vis_ub(&self) -> f64 {
-    return 10.0;
+    self.destandardize(CRIT_995)
   }
   fn pdf(&self, x: f64) -> f64 {
     let mut val = (x - self.mean) * self.recip_sd;
