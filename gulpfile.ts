@@ -1,6 +1,7 @@
 import {spawn} from 'child_process';
 import * as gulp from 'gulp';
 import * as del from 'del';
+import { buildPages } from './build-lib/pages';
 
 export function wasm() {
   return spawn('wasm-pack', ['build', '-d', 'wasm', '-t', 'nodejs', '--dev'], {
@@ -21,7 +22,11 @@ export function tsc() {
   });
 }
 
-export const build = gulp.series(wasm, wasmRelease, tsc);
+export function pages() {
+  return buildPages();
+}
+
+export const build = gulp.series(wasm, wasmRelease, tsc, pages);
 
 export function testRust() {
   return spawn('cargo', ['test'], {
@@ -51,5 +56,9 @@ function cleanRust() {
 }
 
 export const clean = gulp.parallel(cleanRust, cleanJS);
+
+export function watch() {
+  gulp.watch(['layouts/*.njk', 'pages/**'], pages);
+}
 
 export default build;
