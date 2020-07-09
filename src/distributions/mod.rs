@@ -1,4 +1,3 @@
-use wasm_bindgen::prelude::*;
 use crate::curve::ContinuousCurve;
 use crate::util::linspace;
 

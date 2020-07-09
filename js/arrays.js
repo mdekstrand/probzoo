@@ -1,8 +1,8 @@
-export function empty(): Float64Array {
+export function empty() {
   return new Float64Array(0);
 }
 
-export function linspace(start, stop, num): Float64Array {
+export function linspace(start, stop, num) {
   let out = new Float64Array(num);
   let gap = start != stop ? (stop - start) / (num - 1) : 0;
   for (let i = 0; i < num - 1; i++) {
@@ -12,7 +12,7 @@ export function linspace(start, stop, num): Float64Array {
   return out;
 }
 
-export function makeRandom(size): Float64Array {
+export function makeRandom(size) {
   let arr = new Float64Array(size);
   for (let i = 0; i < size; i++) {
     arr[i] = Math.random();
@@ -20,14 +20,14 @@ export function makeRandom(size): Float64Array {
   return arr;
 }
 
-export function axpy(a: number, x: Float64Array, y: Float64Array) {
+export function axpy(a, x, y) {
   let n = x.length;
   for (let i = 0; i < n; i++) {
     y[i] = y[i] + x[i] * a;
   }
 }
 
-export function add(a: number, x: Float64Array, y: Float64Array): Float64Array {
+export function add(a, x, y) {
   let n = x.length;
   let out = new Float64Array(n);
   for (let i = 0; i < n; i++) {

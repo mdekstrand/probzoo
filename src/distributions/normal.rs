@@ -4,7 +4,7 @@ use core::f64::consts::PI;
 use serde::{Serialize, Deserialize};
 use serde_wasm_bindgen::from_value;
 
-use crate::curve::{ContinuousCurve, CurveSpec};
+use crate::curve::{CurveSpec};
 use super::ContinuousDist;
 
 #[derive(Serialize, Deserialize)]

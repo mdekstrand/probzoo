@@ -7,7 +7,7 @@ insert_final_newline = true
 trim_trailing_whitespace = true
 charset = utf-8
 
-[{*.js,*.ts,*.json,*.toml}]
+[{*.js,*.ts,*.mjs,*.json,*.toml}]
 indent_size = 2
 
 [*.rs]

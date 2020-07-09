@@ -1,4 +1,3 @@
-import { ContinuousDistribution } from './distribution';
 import * as d3 from 'd3';
 
 const margin = {
@@ -10,14 +9,15 @@ const margin = {
 const width = 400;
 const height = 400;
 
-export async function pdfchart(dist: ContinuousDistribution, n: number = 1000) {
+export async function pdfchart(dist, n) {
+  if (!n) n = 1000;
   let data = await dist.densities({n});
-  let line = d3.line();
+  console.log(data.points);
   let x = d3.scaleLinear().domain([data.xmin, data.xmax])
                           .range([margin.left, width - margin.right]);
   let y = d3.scaleLinear().domain([data.ymin, data.ymax])
                           .range([height - margin.bottom, margin.top]);
-
+  let line = d3.line().x((d) => x(d.x)).y((d) => y(d.y));
   let svg = d3.create('svg').attr('viewBox', `0 0 ${width} ${height}`).style('display', 'block');
   svg.append('path')
      .datum(data.points)

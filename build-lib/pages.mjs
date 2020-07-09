@@ -1,13 +1,11 @@
-import {dirname} from 'path';
-import * as Metalsmith from 'metalsmith';
-import * as pandoc from 'metalsmith-pandoc';
-import * as layouts from 'metalsmith-layouts';
-import * as collections from 'metalsmith-collections';
-import * as metadata from 'metalsmith-collection-metadata';
+import Metalsmith from 'metalsmith';
+import pandoc from 'metalsmith-pandoc';
+import layouts from 'metalsmith-layouts';
+import collections from 'metalsmith-collections';
+import metadata from 'metalsmith-collection-metadata';
 
 export function buildPages() {
-  let dir = dirname(__dirname);
-  let ms = Metalsmith(dir);
+  let ms = Metalsmith('.');
   ms = ms.metadata({
     sitename: 'Probability Zoo',
     siteurl: 'https://probably.ekstrandom.net',
@@ -15,6 +13,7 @@ export function buildPages() {
   })
   .source('./pages')
   .destination('./build/site')
+  .clean(false)
   .use(collections({
     distributions: 'distributions/*.md'
   }))

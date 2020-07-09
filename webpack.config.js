@@ -6,27 +6,17 @@ const dist = path.resolve(__dirname, "build/site");
 module.exports = {
   mode: "production",
   entry: {
-    index: "./js/index.ts"
-  },
-  resolve: {
-    extensions: ['.tsx', '.ts', '.js']
+    index: "./js/index.js"
   },
   output: {
     path: dist,
-    filename: "[name].js"
+    publicPath: '/',
+    filename: "js/[name].js"
   },
   devServer: {
     contentBase: dist,
   },
-  module: {
-    rules: [
-      {
-        test: /\.tsx?/,
-        use: 'ts-loader',
-        exclude: /node_modules/
-      }
-    ]
-  },
+  devtool: 'source-map',
   plugins: [
     new WasmPackPlugin({
       crateDirectory: __dirname,
