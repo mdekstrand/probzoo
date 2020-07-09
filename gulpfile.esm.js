@@ -2,23 +2,21 @@ import {spawn} from 'child_process';
 import * as gulp from 'gulp';
 import * as del from 'del';
 import { buildPages } from './build-lib/pages';
+import webpack from 'webpack';
 
-export function wasm() {
-  return spawn('wasm-pack', ['build', '-d', 'wasm', '-t', 'nodejs', '--dev'], {
-    stdio: 'inherit'
-  });
-}
-
-export function wasmRelease() {
-  return spawn('wasm-pack', ['build', '-d', 'build/wasm', '-t', 'nodejs'], {
-    stdio: 'inherit'
-  });
-}
-
-export function tsc() {
-  return spawn('yarn', ['tsc'], {
-    shell: true,
-    stdio: 'inherit'
+export function pack(done) {
+  let config = require("./webpack.config");
+  return webpack(config, (err, stats) => {
+    if (err) {
+      done(err);
+    } else if (stats.hasErrors()) {
+      done('webpack failed');
+    } else {
+      console.log(stats.toString({
+        colors: true
+      }));
+      done();
+    }
   });
 }
 
@@ -26,7 +24,7 @@ export function pages() {
   return buildPages();
 }
 
-export const build = gulp.series(wasm, wasmRelease, tsc, pages);
+export const build = gulp.parallel(pack, pages);
 
 export function testRust() {
   return spawn('cargo', ['test'], {
@@ -41,12 +39,12 @@ export function testJS() {
 }
 
 export const test = gulp.series(
-  gulp.parallel(testRust, wasm),
+  testRust,
   testJS
 );
 
 function cleanJS() {
-  return del(['wasm', 'build']);
+  return del(['wasm', 'build', 'pkg']);
 }
 
 function cleanRust() {
