@@ -1,5 +1,5 @@
 import { benchmark, suite } from '@dynatrace/zakzak';
-import * as jsa from '../lib/arrays';
+import * as jsa from '../js/arrays';
 import * as rsa from '../pkg/probzoo';
 
 suite("axpy", () => {

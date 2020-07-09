@@ -3,6 +3,7 @@ name: Normal
 tags: [continuous, unbounded]
 macros:
     erf: \mathrm{erf}
+class: continuous.Normal
 ---
 
 ## Parameters
@@ -35,7 +36,7 @@ Mean
 :   $\mu$
 
 Variance
-:   $\sigma$
+:   $\sigma^2$
 
 ## Related Distributions
 

@@ -1,7 +1,7 @@
 import {expect} from 'chai';
 import * as fc from 'fast-check';
 
-import * as jsa from '../lib/arrays';
+import * as jsa from '../js/arrays';
 import * as rsa from '../pkg/probzoo';
 
 describe('empty', () => {

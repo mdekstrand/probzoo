@@ -1,6 +1,6 @@
 import { benchmark, suite } from '@dynatrace/zakzak';
-import * as jsa from '../lib/arrays';
-import { Normal } from '../lib/normal'
+import * as jsa from '../js/arrays';
+import { Normal } from '../js/normal'
 import * as rsa from '../pkg/probzoo';
 
 suite("Normal Dist", () => {

@@ -6,7 +6,10 @@ const dist = path.resolve(__dirname, "build/site");
 module.exports = {
   mode: "production",
   entry: {
-    index: "./js/index.js"
+    index: "./js/index.ts"
+  },
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js']
   },
   output: {
     path: dist,

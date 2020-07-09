@@ -28,5 +28,10 @@ window.MathJax = {
 <body>
 <h1>{{name}} Distribution</h1>
 {{ contents | safe }}
+<div id="pdf-shell"></div>
+<script type="text/javascript" src="../js/index.js"></script>
+<script type="text/javascript">
+distribution({{class}});
+</script>
 </body>
 </html>

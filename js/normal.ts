@@ -1,4 +1,4 @@
-import { ContinuousDistribution } from './distribution';
+import { ContinuousDistribution, CurveSpec, ContinuousCurve } from './distribution';
 
 const SQRT_2PI = Math.sqrt(2 * Math.PI);
 
@@ -26,9 +26,8 @@ export class Normal implements ContinuousDistribution {
     return _norm_pdf(this.mean, this.sd, x);
   }
 
-  densities(xs) {
-    let mu = this.mean;
-    let sd = this.sd;
-    return Float64Array.from(xs, (x) => _norm_pdf(mu, sd, x));
+  async densities(spec: CurveSpec) {
+    let probzoo = await import('../pkg/probzoo');
+    return probzoo.normal_densities(this, spec) as ContinuousCurve;
   }
 }

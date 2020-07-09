@@ -4,9 +4,7 @@
     "outDir": "build"
   },
   "include": [
-    "lib/**/*",
-    "benchmark/*",
-    "test/*"
+    "js/**/*"
   ],
   "exclude": [
     "node_modules"
