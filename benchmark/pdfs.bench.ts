@@ -1,7 +1,7 @@
 import { benchmark, suite } from '@dynatrace/zakzak';
 import * as jsa from '../lib/arrays';
 import { Normal } from '../lib/normal'
-import * as rsa from '../wasm/probzoo';
+import * as rsa from '../pkg/probzoo';
 
 suite("Normal Dist", () => {
   let dist = new Normal(0, 1);

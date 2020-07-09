@@ -1,0 +1,10 @@
+[tasks.wasm-build]
+description = "Build WASM targets"
+extend = "wasm-pack-base"
+args = ["build"]
+
+[tasks.tsc]
+description = "Compile TypeScript"
+script = [
+  "yarn tsc"
+]

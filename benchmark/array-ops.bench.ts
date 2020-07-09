@@ -1,6 +1,6 @@
 import { benchmark, suite } from '@dynatrace/zakzak';
 import * as jsa from '../lib/arrays';
-import * as rsa from '../wasm/probzoo';
+import * as rsa from '../pkg/probzoo';
 
 suite("axpy", () => {
   let x = jsa.makeRandom(1000);

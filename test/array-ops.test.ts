@@ -2,7 +2,7 @@ import {expect} from 'chai';
 import * as fc from 'fast-check';
 
 import * as jsa from '../lib/arrays';
-import * as rsa from '../wasm/probzoo';
+import * as rsa from '../pkg/probzoo';
 
 describe('empty', () => {
   it("should return an empty array", () => {

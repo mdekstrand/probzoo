@@ -1,5 +1,6 @@
 import {spawn} from 'child_process';
 import * as gulp from 'gulp';
+import * as del from 'del';
 
 export function wasm() {
   return spawn('wasm-pack', ['build', '-d', 'wasm', '-t', 'nodejs', '--dev'], {
@@ -38,5 +39,17 @@ export const test = gulp.series(
   gulp.parallel(testRust, wasm),
   testJS
 );
+
+function cleanJS() {
+  return del(['wasm', 'build']);
+}
+
+function cleanRust() {
+  return spawn('cargo', ['clean'], {
+    stdio: 'inherit'
+  });
+}
+
+export const clean = gulp.parallel(cleanRust, cleanJS);
 
 export default build;
