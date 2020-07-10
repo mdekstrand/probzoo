@@ -18,7 +18,6 @@ pub struct NormalParams {
 pub struct NormalDist {
   mean: f64,
   sd: f64,
-  recip_sqpi: f64,
   recip_sd: f64,
   recip_scale: f64
 }
@@ -30,7 +29,7 @@ impl NormalDist {
     NormalDist {
       mean: params.mean,
       sd: params.sd,
-      recip_sqpi, recip_sd,
+      recip_sd,
       recip_scale: recip_sqpi * recip_sd
     }
   }
