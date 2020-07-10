@@ -7,7 +7,6 @@ use serde_wasm_bindgen::from_value;
 use crate::curve::{CurveSpec};
 use super::{ContinuousDist, pdf_curve, pdf_auto_curve};
 
-const CRIT_995: f64 = 2.575829;
 const CRIT_9995: f64 = 3.290527;
 
 #[derive(Serialize, Deserialize)]

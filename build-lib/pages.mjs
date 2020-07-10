@@ -25,7 +25,9 @@ export function buildPages() {
   .use(pandoc({
     args: ['--mathjax', '--section-divs']
   }))
-  .use(layouts());
+  .use(layouts({
+    default: 'default.njk'
+  }));
 
   return new Promise((ok, fail) => {
     ms.build((err) => {
