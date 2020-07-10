@@ -19,7 +19,7 @@ Scale
 
 ## Distribution Function
 
-The normal distribution has the following PDF:
+The normal distribution has the following probability density function:
 
 $$
 p(x) = \frac{1}{\sqrt{2\pi}} e^{-\frac{(x-\mu)^2}{2\sigma}}

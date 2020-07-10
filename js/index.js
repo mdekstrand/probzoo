@@ -1,8 +1,9 @@
 import { Normal } from './normal';
+import { Beta } from './beta';
 import { pdfchart } from './pdf';
 
 window['continuous'] = {
-  Normal
+  Normal, Beta
 };
 
 window['distribution'] = function(cls) {

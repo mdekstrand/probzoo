@@ -23,3 +23,4 @@ pub fn pdf_auto_curve(dist: &dyn ContinuousDist, n: usize) -> ContinuousCurve {
 }
 
 pub mod normal;
+pub mod beta;
