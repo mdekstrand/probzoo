@@ -5,7 +5,7 @@ use serde::{Serialize, Deserialize};
 use serde_wasm_bindgen::from_value;
 
 use crate::curve::{CurveSpec};
-use super::ContinuousDist;
+use super::{ContinuousDist, pdf_curve, pdf_auto_curve};
 
 const CRIT_995: f64 = 2.575829;
 const CRIT_9995: f64 = 3.290527;
@@ -68,8 +68,8 @@ pub fn normal_densities(params: JsValue, spec: JsValue) -> JsValue {
   let spec = CurveSpec::from_js(spec);
   let dist = NormalDist::create(&params);
   let curve = match spec.bounds() {
-    Some((lb, ub)) => dist.pdf_curve(lb, ub, spec.n),
-    _ => dist.pdf_auto_curve(spec.n)
+    Some((lb, ub)) => pdf_curve(&dist, lb, ub, spec.n),
+    _ => pdf_auto_curve(&dist, spec.n)
   };
   curve.to_js()
 }
