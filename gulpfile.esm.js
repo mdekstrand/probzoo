@@ -3,19 +3,35 @@ import gulp from 'gulp';
 import del from 'del';
 import { buildPages } from './build-lib/pages';
 import webpack from 'webpack';
+import minimist from 'minimist';
+
+const args = minimist(process.argv.slice(2));
+
+function productionMode() {
+  if (process.env.NODE_ENV === 'production') {
+    return true;
+  } else if (args.production) {
+    return true;
+  } else {
+    return false;
+  }
+}
 
 export function pack(done) {
   let config = require("./webpack.config");
+  config.mode = productionMode() ? 'production' : 'development';
   return webpack(config, (err, stats) => {
     if (err) {
       done(err);
-    } else if (stats.hasErrors()) {
-      done('webpack failed');
     } else {
       console.log(stats.toString({
         colors: true
       }));
-      done();
+      if (stats.hasErrors()) {
+        done('webpack failed');
+      } else {
+        done();
+      }
     }
   });
 }
@@ -43,7 +59,7 @@ export const test = gulp.series(
   testJS
 );
 
-function cleanJS() {
+export function clean() {
   return del(['wasm', 'build', 'pkg']);
 }
 
@@ -53,10 +69,14 @@ function cleanRust() {
   });
 }
 
-export const clean = gulp.parallel(cleanRust, cleanJS);
+export const cleanAll = gulp.parallel(cleanRust, clean);
 
-export function watch() {
+export function watchPages() {
   gulp.watch(['layouts/*.njk', 'pages/**'], pages);
+}
+
+export function watchPack() {
+  gulp.watch(['js/*.js', 'src/**', 'Cargo.toml'], pack);
 }
 
 export default build;

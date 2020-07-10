@@ -23,7 +23,7 @@ export function buildPages() {
     }
   }))
   .use(pandoc({
-    args: ['--mathjax']
+    args: ['--mathjax', '--section-divs']
   }))
   .use(layouts());
 

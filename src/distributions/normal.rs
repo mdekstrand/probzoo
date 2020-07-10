@@ -8,6 +8,7 @@ use crate::curve::{CurveSpec};
 use super::ContinuousDist;
 
 const CRIT_995: f64 = 2.575829;
+const CRIT_9995: f64 = 3.290527;
 
 #[derive(Serialize, Deserialize)]
 pub struct NormalParams {
@@ -42,10 +43,10 @@ impl NormalDist {
 
 impl ContinuousDist for NormalDist {
   fn vis_lb(&self) -> f64 {
-    self.destandardize(-CRIT_995)
+    self.destandardize(-CRIT_9995)
   }
   fn vis_ub(&self) -> f64 {
-    self.destandardize(CRIT_995)
+    self.destandardize(CRIT_9995)
   }
   fn pdf(&self, x: f64) -> f64 {
     let mut val = (x - self.mean) * self.recip_sd;

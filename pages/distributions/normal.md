@@ -1,6 +1,9 @@
 ---
 name: Normal
-tags: [continuous, unbounded]
+type: continuous/unbounded
+families:
+- exponential
+- location-scale
 macros:
     erf: \mathrm{erf}
 class: continuous.Normal
@@ -38,10 +41,13 @@ Mean
 Variance
 :   $\sigma^2$
 
+## Families
+
+The normal distribution is a member of the following families:
+
+* The [location-scale family](/families/location-scale)
+* The [exponential family](families/exponential)
+
 ## Related Distributions
 
-Conjugate
-:   normal
-
-Conjugate for
-:   normal
+* The normal distribution is [self-conjugate](/concepts/conjugate#self-conjugate).

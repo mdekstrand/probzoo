@@ -15,11 +15,15 @@ module.exports = {
   },
   devServer: {
     contentBase: dist,
+    staticOptions: {
+      extensions: ['html']
+    }
   },
   devtool: 'source-map',
   plugins: [
     new WasmPackPlugin({
       crateDirectory: __dirname,
+      outName: 'probzoo'
     }),
   ]
 };
