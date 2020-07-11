@@ -13,6 +13,10 @@ module.exports = {
     publicPath: '/',
     filename: "js/[name].js"
   },
+  module: {
+    rules: [
+    ]
+  },
   devServer: {
     contentBase: dist,
     staticOptions: {

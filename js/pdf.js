@@ -9,9 +9,7 @@ const margin = {
 const width = 400;
 const height = 300;
 
-export async function pdfchart(dist, n) {
-  if (!n) n = 1000;
-  let data = await dist.densities({n});
+async function pdfD3(data) {
   let x = d3.scaleLinear().domain([data.xmin, data.xmax])
                           .range([margin.left, width - margin.right]);
   let y = d3.scaleLinear().domain([0, data.ymax])
@@ -41,4 +39,10 @@ export async function pdfchart(dist, n) {
 
   let elt = document.getElementById('pdf-shell');
   elt.appendChild(svg.node());
+}
+
+export async function pdfchart(dist, n) {
+  if (!n) n = 1000;
+  let data = await dist.densities({n});
+  await pdfD3(data);
 }
