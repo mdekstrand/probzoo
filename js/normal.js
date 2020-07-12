@@ -1,3 +1,5 @@
+import { real } from './params';
+
 let probzoo = import('../pkg/probzoo');
 
 export class Normal {
@@ -15,4 +17,9 @@ export class Normal {
     let zoo = await probzoo;
     return zoo.normal_densities(this, spec);
   }
+}
+
+Normal.prototype.params = {
+  mean: real('\\(\\mu\\)'),
+  sd: real('\\(\\sigma\\)', [1.0e-10, null])
 }

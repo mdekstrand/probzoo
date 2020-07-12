@@ -7,6 +7,5 @@ window['continuous'] = {
 };
 
 window['distribution'] = function(cls) {
-  let dist = new cls();
-  pdfchart(dist);
+  pdfchart(cls);
 };
