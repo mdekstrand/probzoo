@@ -36,7 +36,7 @@
     "metalsmith-layouts": "^2.3.1",
     "metalsmith-pandoc": "^1.0.0",
     "mithril": "^2.0.4",
-    "nunjucks": "^3.2.1",
+    "nunjucks": "^3.2.4",
     "webpack": "^4.43.0"
   },
   "browserslist": [
